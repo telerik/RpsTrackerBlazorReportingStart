@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using RPS.Data;
-
+using Telerik.Reporting.Cache.File;
+using Telerik.Reporting.Services;
 
 namespace RPS.Web.Server
 {
@@ -27,6 +29,35 @@ namespace RPS.Web.Server
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(opts =>
+            {
+                opts.AddDefaultPolicy(p => {
+                    p.AllowAnyOrigin();
+                    p.AllowAnyMethod();
+                    p.AllowAnyHeader();
+                });
+            });
+
+            services.AddControllers().AddNewtonsoftJson();
+            services.Configure<IISServerOptions>(options => {
+                options.AllowSynchronousIO = true;
+            });
+
+            services.TryAddSingleton<IReportServiceConfiguration>(sp =>
+                new ReportServiceConfiguration
+                {
+                    ReportingEngineConfiguration = Configuration,
+                    HostAppId = "Net5RestServiceWithCors",
+                    Storage = new FileStorage(),
+                    ReportSourceResolver = new UriReportSourceResolver(
+                        System.IO.Path.Combine(
+                            sp.GetService<IWebHostEnvironment>().WebRootPath,
+                            "Reports"
+                            )
+                        )
+                }
+            );
+
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddTelerikBlazor();
@@ -59,9 +90,11 @@ namespace RPS.Web.Server
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapBlazorHub();
                 endpoints.MapFallbackToPage("/_Host");
             });

@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <Content Update="wwwroot\Reports\rps_dashboard_report.trdp">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 

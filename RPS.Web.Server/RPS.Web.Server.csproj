@@ -17,10 +17,4 @@
     <ProjectReference Include="..\RPS.Data.Standard\RPS.Data.Standard.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="wwwroot\Reports\rps_dashboard_report.trdp">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>

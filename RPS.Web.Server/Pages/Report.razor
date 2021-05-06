@@ -16,7 +16,13 @@
                   ServiceUrl="/api/reports"
                   ReportSource="@(new ReportSourceOptions
                                   {
-                                      Report = "rps_dashboard_report.trdp"
+                                      Report = "rps_table_report.trdp",
+                                      Parameters = new Dictionary<string, object>
+                                      {
+                                          {
+                                            "ReportName", ReportName
+                                          }
+                                      }
                                   })"
                   />
 
@@ -26,5 +32,5 @@
 <link href="css/dashboard.css" rel="stylesheet" />
 
 @code {
-
+    string ReportName = "All Issues";
 }

@@ -17,7 +17,8 @@ All users with an active trial or commercial license have access to the
 [Telerik Reporting video course](https://learn.telerik.com/learn/course/internal/view/elearning/38/telerik-reporting)
 available in [Telerik's Virtual Classroom](https://learn.telerik.com/learn).
 
-After the Welcome chapter, the second chapter makes an overview of what tools the [Telerik Reporting](https://www.telerik.com/products/reporting)
+After the Welcome chapter, the second chapter makes an overview of what tools the 
+[Telerik Reporting](https://www.telerik.com/products/reporting?utm_medium=referral&utm_source=github&utm_campaign=reporting-awareness-gh-public-readme)
 product includes and what a report definition is.
 
 Chapter 3 guides you in the process of designing a basic report using the
@@ -42,9 +43,9 @@ To submit a pull request, you should **first** [**fork**](https://docs.github.co
 Telerik Reporing is a commercial product. To use it, you need to either register for a free trial or purchase a license.
 
 The 30-day free trial can be obtained from the
-[Telerik Reporting product page](https://www.telerik.com/products/reporting)
+[Telerik Reporting product page](https://www.telerik.com/products/reporting?utm_medium=referral&utm_source=github&utm_campaign=reporting-awareness-gh-public-readme)
 which gives you full access to the Telerik Reporting functionality. For more information regarding the available license and bundle options, you can review the 
-[Telerik Reporting product pricing page](https://www.telerik.com/purchase/individual/reporting).
+[Telerik Reporting product pricing page](https://www.telerik.com/purchase/individual/reporting?utm_medium=referral&utm_source=github&utm_campaign=reporting-awareness-gh-public-readme).
 
 Both active trialists and license holders can take advantage of our legendary technical support provided directly by the Reporting dev team!
 
@@ -54,7 +55,7 @@ Both active trialists and license holders can take advantage of our legendary te
 - [Initial version of the RPS Issue Tracker Projects GitHub Repo](https://github.com/telerik/RpsTrackerBlazorReportingStart)
 - [Basic Final version of the RPS Issue Tracker Projects GitHub Repo](https://github.com/telerik/RpsTrackerBlazorReportingStart/tree/basics-complete)
 - [Advanced Final version of the RPS Issue Tracker Projects GitHub Repo](https://github.com/telerik/RpsTrackerBlazorReportingStart/tree/advanced-complete)
-- Browse all [Telerik Reporting live demos](https://demos.telerik.com/reporting)
+- Browse all [Telerik Reporting live demos](https://demos.telerik.com/reporting?utm_medium=referral&utm_source=github&utm_campaign=reporting-awareness-gh-public-readme)
 - Browse the [Telerik Reporting official documentation](https://docs.telerik.com/reporting)
 - Follow this link to [report bugs and add feature requests](https://feedback.telerik.com/reporting)
 - [Creating Reports Overview](https://docs.telerik.com/reporting/designing-reports/overview)

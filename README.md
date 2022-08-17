@@ -23,14 +23,14 @@ product includes and what a report definition is.
 
 Chapter 3 guides you in the process of designing a basic report using the
 [Standalone Report Designer](https://docs.telerik.com/reporting/designing-reports/report-designer-tools/desktop-designers/standalone-report-designer/overview)
-and integrating it into a sample Blazor application.
+and integrating it into a sample Blazor application using the Blazor Report Viewer.
 
 Chapter 4 shows some more advanced scenarios of report customization and also shows how to work with the alternative 
 [Web Report Designer](https://docs.telerik.com/reporting/designing-reports/report-designer-tools/web-report-designer/overview)
 that is used to embed report creation into your web applications.
 [Globalization](https://docs.telerik.com/reporting/globalization/overview) of the reports is also covered.
 
-Chapter 5 teaches how to better style your reports.
+Chapter 5 teaches how to better style your reports by creating style rules and setting different style properties of the report items.
 
 ## **Contribution**
 
@@ -52,7 +52,7 @@ Both active trialists and license holders can take advantage of our legendary te
 ## **Useful Links**
 
 - [Video onboarding training Telerik Reporting](https://learn.telerik.com/learn/course/internal/view/elearning/38/telerik-reporting)
-- [Initial version of the RPS Issue Tracker Projects GitHub Repo](https://github.com/telerik/RpsTrackerBlazorReportingStart)
+- [The initial version of the RPS Issue Tracker Projects GitHub Repo](https://github.com/telerik/RpsTrackerBlazorReportingStart)
 - [Basic Final version of the RPS Issue Tracker Projects GitHub Repo](https://github.com/telerik/RpsTrackerBlazorReportingStart/tree/basics-complete)
 - [Advanced Final version of the RPS Issue Tracker Projects GitHub Repo](https://github.com/telerik/RpsTrackerBlazorReportingStart/tree/advanced-complete)
 - Browse all [Telerik Reporting live demos](https://demos.telerik.com/reporting?utm_medium=referral&utm_source=github&utm_campaign=reporting-awareness-gh-public-readme)

@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="GenData\fs-items.json" />
+		<None Remove="GenData\fs-users.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="GenData\fs-items.json" />
+		<EmbeddedResource Include="GenData\fs-users.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\RPS.Core\RPS.Core.csproj" />
+	</ItemGroup>
+
+</Project>

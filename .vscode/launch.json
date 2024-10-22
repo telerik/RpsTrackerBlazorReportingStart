@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        
+        {
+            "name": "C#: RPS.Web Debug",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/RPS.Web/RPS.Web.csproj"
+        }
+    ]
+}

@@ -1,0 +1,63 @@
+﻿@page "/backlog"
+@page "/backlog/{PresetParam}"
+
+@using RPS.Web.Components.Backlog;
+@using RPS.Web.Models;
+@inject NavigationManager NavigationManager
+
+<link rel="stylesheet" href="css/backlog.css" />
+
+<div style="width: 1200px; padding-top: 24px; padding-bottom: 20px; padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+  <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
+    <div style="text-align: center; color: #3D3D3D; font-size: 40px; font-family: Roboto; font-weight: 500; line-height: 48px; word-wrap: break-word">Backlog</div>
+    <div style="justify-content: flex-start; align-items: center; display: flex">
+
+        <TelerikButtonGroup SelectionMode="Telerik.Blazor.ButtonGroupSelectionMode.Single">
+                <ButtonGroupToggleButton OnClick="@(_ => SelectPreset("My"))">My Items</ButtonGroupToggleButton>
+                <ButtonGroupToggleButton OnClick="@(_ => SelectPreset("Open"))">Open Items</ButtonGroupToggleButton>
+                <ButtonGroupToggleButton OnClick="@(_ => SelectPreset("Closed"))">Closed Items</ButtonGroupToggleButton>
+        </TelerikButtonGroup>
+     
+     </div>
+  </div>
+  <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
+    <div style="align-self: stretch; height: 47px; border-left: 1px rgba(0, 0, 0, 0.08) solid; border-top: 1px rgba(0, 0, 0, 0.08) solid; border-right: 1px rgba(0, 0, 0, 0.08) solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+      <div style="align-self: stretch; height: 47px; padding: 8px; background: #FAFAFA; border-bottom: 1px rgba(0, 0, 0, 0.08) solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+            <NavLink href="Create">
+          <div style="justify-content: flex-start; align-items: center; gap: 8px; display: inline-flex">
+          <div style="justify-content: flex-start; align-items: flex-start; gap: 8px; display: flex">
+            <div style="border-radius: 4px; justify-content: center; align-items: center; display: flex">
+              <div style="padding-left: 8px; padding-right: 8px; padding-top: 4px; padding-bottom: 4px; background: #1274AC; border-radius: 4px; border: 1px #1274AC solid; justify-content: center; align-items: center; gap: 4px; display: flex">
+                <div style="justify-content: center; align-items: center; display: flex">
+                  <div style="text-align: center; color: white; font-size: 14px; font-family: Roboto; font-weight: 400; line-height: 19.88px; word-wrap: break-word">Add New Task</div>
+                                 
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+                </NavLink>
+
+      </div>
+    </div>
+
+        <Items PresetParam="@PresetParam" />
+  </div>
+</div>
+
+
+
+@code {
+    [Parameter]
+    public string PresetParam { get; set; }
+
+}
+
+@code {
+
+    private void SelectPreset(string presetStr)
+    {
+        NavigationManager.NavigateTo($"/backlog/{presetStr.ToLower()}");
+    }
+
+}

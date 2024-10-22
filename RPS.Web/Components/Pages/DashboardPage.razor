@@ -1,0 +1,231 @@
+﻿@page "/dashboard"
+@page "/dashboard/{Months:int}/{UserId:int}"
+
+
+@using RPS.Core.Models
+@using RPS.Web.Components.Dashboard
+@inject NavigationManager NavigationManager
+
+
+<link rel="stylesheet" href="css/dashboard.css" />
+
+<div>
+    <div class="Frame11"
+         style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
+        <div class="Frame13"
+             style="width: 573px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 2px; display: inline-flex">
+            <div class="Label"
+                 style="text-align: center; color: #3D3D3D; font-size: 40px; font-family: Roboto; font-weight: 500; line-height: 48px; word-wrap: break-word">
+                Dashboard
+            </div>
+        </div>
+        <div class="Tools" style="justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
+
+            <TelerikComboBox Data="@Assignees" TextField="FullName" ValueField="Id" @bind-Value="SelectedAssigneeId"
+                             Placeholder="Select assignee.." ClearButton="true" Filterable="true" FilterOperator="StringFilterOperator.Contains" Width="260px">
+                <ItemTemplate>
+                    @{
+                        var item = context as PtUser;
+
+                        <div class="flex-container" style="margin-left: 5px;">
+                            <img src="@item.Avatar" class="li-avatar rounded mx-auto" />
+                            <span style="margin-left: 5px;">@item.FullName</span>
+                        </div>
+                    }
+
+                </ItemTemplate>
+            </TelerikComboBox>
+        
+            <TelerikButtonGroup SelectionMode="Telerik.Blazor.ButtonGroupSelectionMode.Single">
+                <ButtonGroupToggleButton Icon="SvgIcon.Calendar" OnClick="@(_ => DateRangeFilter(3))">3 Months</ButtonGroupToggleButton>
+                <ButtonGroupToggleButton Icon="SvgIcon.Calendar" OnClick="@(_ => DateRangeFilter(6))">6 Months</ButtonGroupToggleButton>
+                <ButtonGroupToggleButton Icon="SvgIcon.Calendar" OnClick="@(_ => DateRangeFilter(12))">1 Year</ButtonGroupToggleButton>
+            </TelerikButtonGroup>
+
+
+        </div>
+    </div>
+    <div class="DiagramAndStatistics"
+         style="height: 525px; flex-direction: column; justify-content: flex-start; align-items: center; gap: 16px; display: flex">
+        <div class="Statistics"
+             style="align-self: stretch; padding-left: 192px; padding-right: 192px; padding-top: 16px; padding-bottom: 16px; background: #FAFAFA; border-radius: 4px; justify-content: space-between; align-items: center; display: inline-flex">
+            <div class="Numbers"
+                 style="flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                <div class="Label"
+                     style="width: 105px; height: 48px; justify-content: center; align-items: flex-start; display: inline-flex">
+                    <div class="BaseInputLabel"
+                         style="justify-content: flex-start; align-items: center; gap: 6px; display: flex">
+                        <div class="Label"
+                             style="color: #3D3D3D; font-size: 42px; font-family: Roboto; font-weight: 400; line-height: 55.86px; word-wrap: break-word">
+                            @IssueCountActive
+                        </div>
+                    </div>
+                </div>
+                <div class="Label"
+                     style="align-self: stretch; justify-content: center; align-items: flex-start; display: inline-flex">
+                    <div class="BaseInputLabel"
+                         style="justify-content: flex-start; align-items: center; gap: 6px; display: flex">
+                        <div class="Label"
+                             style="color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+                            Active Issues
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Numbers"
+                 style="flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                <div class="Label"
+                     style="width: 105px; height: 48px; justify-content: center; align-items: flex-start; display: inline-flex">
+                    <div class="BaseInputLabel"
+                         style="justify-content: flex-start; align-items: center; gap: 6px; display: flex">
+                        <div class="Label"
+                             style="color: #399D60; font-size: 42px; font-family: Roboto; font-weight: 400; line-height: 55.86px; word-wrap: break-word">
+                            @IssueCountClosed
+                        </div>
+                    </div>
+                </div>
+                <div class="Label"
+                     style="align-self: stretch; justify-content: center; align-items: flex-start; display: inline-flex">
+                    <div class="BaseInputLabel"
+                         style="justify-content: flex-start; align-items: center; gap: 6px; display: flex">
+                        <div class="Label"
+                             style="color: #399D60; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+                            Closed Issues
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Numbers"
+                 style="flex-direction: column; justify-content: center; align-items: center; display: inline-flex">
+                <div class="Label"
+                     style="width: 105px; height: 48px; justify-content: center; align-items: flex-start; display: inline-flex">
+                    <div class="BaseInputLabel"
+                         style="justify-content: flex-start; align-items: center; gap: 6px; display: flex">
+                        <div class="Label"
+                             style="color: #8142BF; font-size: 42px; font-family: Roboto; font-weight: 400; line-height: 55.86px; word-wrap: break-word">
+                            @IssueCountOpen
+                        </div>
+                    </div>
+                </div>
+                <div class="Label"
+                     style="align-self: stretch; justify-content: center; align-items: flex-start; display: inline-flex">
+                    <div class="BaseInputLabel"
+                         style="justify-content: flex-start; align-items: center; gap: 6px; display: flex">
+                        <div class="Label"
+                             style="color: #8142BF; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+                            Open Issues
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="Numbers"
+                 style="flex-direction: column; justify-content: center; align-items: center; gap: 6px; display: inline-flex">
+                <div class="Frame35"
+                     style="align-self: stretch; height: 72px; flex-direction: column; justify-content: flex-start; align-items: center; display: flex">
+                    <div class="Label"
+                         style="height: 48px; justify-content: center; align-items: flex-start; display: inline-flex">
+                        <div class="BaseInputLabel"
+                             style="justify-content: flex-start; align-items: center; gap: 6px; display: flex">
+                            <div class="Label"
+                                 style="color: #3D3D3D; font-size: 42px; font-family: Roboto; font-weight: 400; line-height: 55.86px; word-wrap: break-word">
+                                @IssueCloseRate
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Label"
+                         style="align-self: stretch; justify-content: center; align-items: flex-start; display: inline-flex">
+                        <div class="BaseInputLabel"
+                             style="justify-content: flex-start; align-items: center; gap: 6px; display: flex">
+                            <div class="Label"
+                                 style="color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+                                Close Rate
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="Frame36"
+             style="align-self: stretch; height: 405px; flex-direction: column; justify-content: flex-start; align-items: flex-end; gap: 8px; display: flex">
+            <div class="Frame38"
+                 style="align-self: stretch; justify-content: space-between; align-items: flex-start; display: inline-flex">
+                <div class="Statistics"
+                     style="width: 218px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                    <div class="Label" style="justify-content: center; align-items: flex-start; display: inline-flex">
+                        <div class="BaseInputLabel"
+                             style="justify-content: flex-start; align-items: center; gap: 6px; display: flex">
+                            <div class="Label"
+                                 style="color: #3D3D3D; font-size: 21px; font-family: Roboto; font-weight: 700; line-height: 27.93px; word-wrap: break-word">
+                                All Issues
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Label" style="justify-content: center; align-items: flex-start; display: inline-flex">
+                        <div class="BaseInputLabel"
+                             style="justify-content: flex-start; align-items: center; gap: 6px; display: flex">
+                            <div class="Label"
+                                 style="color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+                                Active Issues
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="Statistics"
+                     style="width: 218px; align-self: stretch; flex-direction: column; justify-content: space-between; align-items: flex-end; display: inline-flex">
+                    <div class="Label" style="justify-content: center; align-items: flex-start; display: inline-flex">
+                        <div class="BaseInputLabel"
+                             style="justify-content: flex-start; align-items: center; gap: 6px; display: flex">
+                            <div class="Label"
+                                 style="color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+                                Highest: 100% on Oct 11, 2018
+                            </div>
+                        </div>
+                    </div>
+                    <div class="Label" style="justify-content: center; align-items: flex-start; display: inline-flex">
+                        <div class="BaseInputLabel"
+                             style="justify-content: flex-start; align-items: center; gap: 6px; display: flex">
+                            <div class="Label"
+                                 style="color: #3D3D3D; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">
+                                Lowest: 20% on Oct 9, 2018
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="Frame36"
+             style="display:block; width:100%;">
+        
+            <IssueChart Filter="Filter" @ref="IssueChartRef" />
+        
+        </div>
+
+                 
+    </div>
+</div>
+
+@code {
+
+}
+
+
+
+@code {
+
+    public IssueChart IssueChartRef { get; set; }
+
+    private void DateRangeFilter(int months)
+    {
+        Months = months;
+        UserId = UserId.HasValue ? UserId.Value : 0;
+        NavigationManager.NavigateTo($"/dashboard/{Months}/{UserId}");
+        Refresh();
+    }
+
+    void ItemResize()
+    {
+        IssueChartRef.RefreshTelerikChart();
+    }
+}

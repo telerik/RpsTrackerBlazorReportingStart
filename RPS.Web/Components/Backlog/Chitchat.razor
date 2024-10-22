@@ -1,0 +1,68 @@
+﻿
+
+
+<div style="width: 1160px; padding-left: 16px; padding-right: 16px; padding-top: 24px; padding-bottom: 24px; background: white; border-top-left-radius: 4px; border-top-right-radius: 4px; border: 1px rgba(0, 0, 0, 0.08) solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+    <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
+        
+        
+        <div style="width: 553px; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
+            
+            <UserAvatar User="CurrentUser" ClassName="mr-3 li-avatar rounded" />
+           
+            <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
+                <textarea @bind="NewCommentTitle" placeholder="Enter new comment..." style="width: 653px; height: 60px; background: white; border-radius: 6px; border: 1px rgba(33, 37, 41, 0.20) solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex"></textarea>
+                <button @onclick="AddCommentHandler" class="btn btn-primary">Add Comment</button>
+            </div>
+        
+        </div>
+
+
+
+        <div style="width: 701px; height: 1px; padding-right: 1.75px; justify-content: center; align-items: center; display: inline-flex">
+            <div style="width: 699.25px; height: 1px; position: relative; background: rgba(0, 0, 0, 0.08)"></div>
+        </div>
+        
+        
+        <div style="align-self: stretch; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 20px; display: flex">
+            
+            <ul id="listComments" class="list-unstyled">
+                @foreach (var comment in CommentItems)
+                {
+                    <li class="media chitchat-item">
+                        <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 16px; display: inline-flex">
+                            <UserAvatar User="comment.User" ClassName="mr-3 li-avatar rounded" />
+                            <div style="flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 4px; display: inline-flex">
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; gap: 8px; display: inline-flex">
+                                    <div style="height: 24px; justify-content: flex-start; align-items: flex-start; display: flex">
+                                        <div style="height: 24px; justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                            <div style="color: #212529; font-size: 16px; font-family: Roboto; font-weight: 700; line-height: 24px; word-wrap: break-word">@comment.User.FullName</div>
+                                        </div>
+                                    </div>
+                                    <div style="height: 24px; justify-content: flex-start; align-items: flex-start; display: flex">
+                                        <div style="height: 24px; justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                            <div style="color: #0044C2; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">@comment.DateCreated.ToString("MMM d, yyyy")</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style="align-self: stretch; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+                                    <div style="flex: 1 1 0; margin: 10px 0 30px 0; justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                                        <div style="flex: 1 1 0; color: #596169; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">@comment.Title</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                }
+            </ul>
+
+        </div>
+    
+    
+    </div>
+</div>
+
+
+@code {
+
+}

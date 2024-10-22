@@ -1,0 +1,96 @@
+﻿
+
+
+<EditForm Model="Model" OnValidSubmit="HandleValidSubmit">
+
+    <div style="width: 1160px; padding-left: 20px; padding-right: 20px; padding-top: 24px; padding-bottom: 24px; background: white; border-top-left-radius: 4px; border-top-right-radius: 4px; overflow: hidden; border: 1px rgba(33, 37, 41, 0.13) solid; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+        <div style="flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 16px; display: flex">
+            <div style="height: 62px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                <div style="width: 111px; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                        <div style="color: #212529; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Title</div>
+                    </div>
+                </div>
+                <TelerikTextBox @bind-Value="Model.Title" Width="550px"></TelerikTextBox>
+             
+            </div>
+            <div style="height: 117px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                <div style="width: 111px; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                        <div style="color: #212529; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Description</div>
+                    </div>
+                </div>
+                <TelerikTextArea Id="description" Width="550px" @bind-Value="Model.Description" class="k-textbox k-state-valid rps-text-area">
+                </TelerikTextArea>
+            </div>
+            <div style="align-self: stretch; height: 70px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                <div style="width: 111px; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                        <div style="color: #212529; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Estimate</div>
+                    </div>
+                </div>
+                <TelerikNumericTextBox Id="estimate" Width="350px" Max="20" Min="1" Step="1" @bind-Value="Model.Estimate"></TelerikNumericTextBox>
+            </div>
+            <div style="height: 62px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                <div style="width: 111px; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                        <div style="color: #212529; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Item type</div>
+                    </div>
+                </div>
+                <TelerikDropDownList Id="type" Width="350px" Data="@Model.ItemTypes" @bind-Value="Model.SelectedItemType">
+                </TelerikDropDownList>
+            </div>
+            <div style="height: 62px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                <div style="width: 111px; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                        <div style="color: #212529; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Status</div>
+                    </div>
+                </div>
+                <TelerikDropDownList Id="status" Width="350px" Data="@Model.Statuses" @bind-Value="Model.SelectedStatus">
+                </TelerikDropDownList>
+            </div>
+            <div style="height: 62px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                <div style="width: 111px; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                        <div style="color: #212529; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Priority</div>
+                    </div>
+                </div>
+                <TelerikDropDownList Id="priority" Width="350px" Data="@Model.Priorities" @bind-Value="Model.SelectedPriority">
+                </TelerikDropDownList>
+            </div>
+            <div style="height: 62px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                <div style="width: 111px; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                        <div style="color: #212529; font-size: 16px; font-family: Roboto; font-weight: 400; line-height: 24px; word-wrap: break-word">Assignee</div>
+                    </div>
+                </div>
+                <TelerikDropDownList Id="assignee" Width="350px" Data="@Model.Users" @bind-Value="Model.SelectedAssigneeId" TextField="FullName" ValueField="Id">
+                </TelerikDropDownList>
+            </div>
+
+            <div style="height: 62px; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: flex">
+                <div style="width: 111px; justify-content: flex-start; align-items: center; display: inline-flex">
+                    <div style="justify-content: flex-start; align-items: center; gap: 4px; display: flex">
+                       
+                    </div>
+                </div>
+                <div class="offset-sm-2 col-sm-10">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+
+</EditForm>
+
+
+<div>
+    <NavLink href="Backlog">Back to List</NavLink>
+</div>
+
+@code {
+
+}

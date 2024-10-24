@@ -1,0 +1,35 @@
+﻿@page "/details/{Id:int}/{ScreenParam}"
+
+@using RPS.Web.Models;
+@using RPS.Web.Components.Backlog;
+
+
+<div style="width: 1200px; padding-top: 24px; padding-bottom: 20px; padding-left: 20px; padding-right: 20px; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 24px; display: inline-flex">
+    <div style="align-self: stretch; justify-content: space-between; align-items: center; display: inline-flex">
+        <div style="text-align: center; color: #3D3D3D; font-size: 40px; font-family: Roboto; font-weight: 500; line-height: 48px; word-wrap: break-word">@Item.Title</div>
+        <div style="justify-content: flex-start; align-items: center; display: flex">
+
+            <NavLink href=@($"/Details/{Item.Id}/Details") class="btn btn-outline-secondary">Details</NavLink>
+            <NavLink href=@($"/Details/{Item.Id}/Tasks") class="btn btn-outline-secondary">Tasks</NavLink>
+            <NavLink href=@($"/Details/{Item.Id}/Chitchat") class="btn btn-outline-secondary">Chitchat</NavLink>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+@{ switch (Screen)
+    {
+        case DetailScreenEnum.Details:
+            <DetailsForm Item="Item" />
+            break;
+        case DetailScreenEnum.Tasks:
+            <Tasks Item="Item"  />
+            break;
+        case DetailScreenEnum.Chitchat:
+            <Chitchat Item="Item"  />
+            break;
+    }
+}

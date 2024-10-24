@@ -1,0 +1,13 @@
+﻿.flex-container {
+    display: flex;
+    align-items: center; /* Vertical alignment */
+    justify-content: flex-start; /* Horizontal alignment */
+}
+
+.li-avatar {
+    background-color: #eeeeee;
+    width: 40px;
+    height: 40px;
+    padding-left: 0;
+    padding-right: 0;
+}
